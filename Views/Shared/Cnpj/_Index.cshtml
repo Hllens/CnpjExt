@@ -50,25 +50,21 @@
         App.txtCep.setValue(retorno.Cep);
         App.txtEmail.setValue(retorno.Email);
         
-        retorno.Cnpj == null || retorno.Cnpj == "" ? App.txtCNPJ1.setHidden(true) : () => { App.txtCNPJ1.setHidden(false); App.txtCNPJ1.setValue(retorno.Cnpj); };
-        retorno.Nome == null || retorno.Nome == "" ? App.txtRazaoSocial.setHidden(true) : App.txtRazaoSocial.setValue(retorno.Nome);
-        retorno.Fantasia == null || retorno.Fantasia == "" ? App.txtFantasia.setHidden(true) : App.txtFantasia.setValue(retorno.Fantasia);
-        retorno.Logradouro == null || retorno.Logradouro == "" ? App.txtLogradouro.setHidden(true) : App.txtLogradouro.setValue(retorno.Logradouro);
-        retorno.Numero == null || retorno.Numero == "" ? App.txtNumero.setHidden(true) : App.txtNumero.setValue(retorno.Numero);
-        retorno.Municipio == null || retorno.Municipio == "" ? App.txtMunicipio.setHidden(true) : App.txtMunicipio.setValue(retorno.Municipio);
-        retorno.UF == null || retorno.UF == "" ? App.txtUf.setHidden(true) : App.txtUf.setValue(retorno.UF);
-        retorno.Tipo == null || retorno.Tipo == "" ? App.txtTipo.setHidden(true) : App.txtTipo.setValue(retorno.Tipo);
-        retorno.Telefone == null || retorno.Telefone == "" ? App.txtTelefone.setHidden(true) : App.txtTelefone.setValue(retorno.Telefone);
-        retorno.Abertura == null || retorno.Abertura == "" ? App.txtAbertura.setHidden(true) : App.txtAbertura.setValue(retorno.Abertura);
-        retorno.Situacao == null || retorno.Situacao == "" ? App.txtSituacao.setHidden(true) : App.txtSituacao.setValue(retorno.Situacao);
-        retorno.Bairro == null || retorno.Bairro == "" ? App.txtBairro.setHidden(true) : App.txtBairro.setValue(retorno.Bairro);
-        retorno.Complemento == null || retorno.Complemento == "" ? App.txtComplemento.setHidden(true) : App.txtComplemento.setValue(retorno.Complemento);
-        retorno.Cep == null || retorno.Cep == "" ? App.txtCep.setHidden(true) : App.txtCep.setValue(retorno.Cep);
-        //retorno.Email == null || retorno.Email == "" ? App.txtEmail.setHidden(true) : () => { App.txtEmail.setHidden(false); App.txtEmail.setValue(retorno.Email); };
-        App.txtEmail.setHidden(retorno.Email == null || retorno.Email == "");
-
-
-
+        retorno.Cnpj == null || retorno.Cnpj == "" ? App.txtCNPJ1.setHidden(true) : App.txtCNPJ1.setValue(retorno.Cnpj).setHidden(false);
+        retorno.Nome == null || retorno.Nome == "" ? App.txtRazaoSocial.setHidden(true) : App.txtRazaoSocial.setValue(retorno.Nome).setHidden(false);
+        retorno.Fantasia == null || retorno.Fantasia == "" ? App.txtFantasia.setHidden(true) : App.txtFantasia.setValue(retorno.Fantasia).setHidden(false);
+        retorno.Logradouro == null || retorno.Logradouro == "" ? App.txtLogradouro.setHidden(true) : App.txtLogradouro.setValue(retorno.Logradouro).setHidden(false);
+        retorno.Numero == null || retorno.Numero == "" ? App.txtNumero.setHidden(true) : App.txtNumero.setValue(retorno.Numero).setHidden(false);
+        retorno.Municipio == null || retorno.Municipio == "" ? App.txtMunicipio.setHidden(true) : App.txtMunicipio.setValue(retorno.Municipio).setHidden(false);
+        retorno.UF == null || retorno.UF == "" ? App.txtUf.setHidden(true) : App.txtUf.setValue(retorno.UF).setHidden(false);
+        retorno.Tipo == null || retorno.Tipo == "" ? App.txtTipo.setHidden(true) : App.txtTipo.setValue(retorno.Tipo).setHidden(false);
+        retorno.Telefone == null || retorno.Telefone == "" ? App.txtTelefone.setHidden(true) : App.txtTelefone.setValue(retorno.Telefone).setHidden(false);
+        retorno.Abertura == null || retorno.Abertura == "" ? App.txtAbertura.setHidden(true) : App.txtAbertura.setValue(retorno.Abertura).setHidden(false);
+        retorno.Situacao == null || retorno.Situacao == "" ? App.txtSituacao.setHidden(true) : App.txtSituacao.setValue(retorno.Situacao).setHidden(false);
+        retorno.Bairro == null || retorno.Bairro == "" ? App.txtBairro.setHidden(true) : App.txtBairro.setValue(retorno.Bairro).setHidden(false);
+        retorno.Complemento == null || retorno.Complemento == "" ? App.txtComplemento.setHidden(true) : App.txtComplemento.setValue(retorno.Complemento).setHidden(false);
+        retorno.Cep == null || retorno.Cep == "" ? App.txtCep.setHidden(true) : App.txtCep.setValue(retorno.Cep).setHidden(false);
+        retorno.Email == null || retorno.Email == "" ? App..txtEmailsetHidden(true) : App.txtEmail.setValue(retorno.Email).setHidden(false);
     }
     
 </script>
