@@ -1,0 +1,176 @@
+﻿@using CnpjExt.ViewModel;
+@using System.Web.Configuration;
+
+@{
+    Layout = null;
+    var X = Html.X();
+    var apiReceita = WebConfigurationManager.AppSettings["ApiReceita"];
+}
+
+<script>
+    function buscarCnpj() {
+        cnpj = App.txtCnpj.getValue();
+        //FAZENDO A CHAMADA COM DIRECT
+        //É O MÉTODO RESPONSÁVEL POR ENCAMINHAR O CNPJ DIGITADO PARA A CONTROLLER
+        Ext.net.DirectMethod.request({
+            url: '~/Cnpj/Buscar',
+            params: {
+                cnpj: App.txtCnpj.getValue()
+            },
+            method: 'POST',
+            json: true,
+            eventMask: {
+                showMask: true,
+                msg: "Buscando CNPJ..."
+            },
+            success: (retorno) => {
+                exibirDados(retorno)
+            },
+            failure: (retorno) => {
+                Ext.Msg.alert("Atenção!", retorno, Ext.emptyFn);      
+            }
+        });
+    }
+
+    function exibirDados(retorno) {
+        App.pnlCnpj.setHidden(false);
+        App.txtCNPJ1.setValue(retorno.Cnpj);
+        App.txtRazaoSocial.setValue(retorno.Nome);
+        App.txtFantasia.setValue(retorno.Fantasia);
+        App.txtLogradouro.setValue(retorno.Logradouro);
+        App.txtNumero.setValue(retorno.Numero);
+        App.txtMunicipio.setValue(retorno.Municipio);
+        App.txtUf.setValue(retorno.UF);
+        App.txtTipo.setValue(retorno.Tipo);
+        App.txtTelefone.setValue(retorno.Telefone);
+        App.txtAbertura.setValue(retorno.Abertura);
+        App.txtSituacao.setValue(retorno.Situacao);
+        App.txtBairro.setValue(retorno.Bairro);
+        App.txtComplemento.setValue(retorno.Complemento);
+        App.txtCep.setValue(retorno.Cep);
+        
+        retorno.Cnpj == null || retorno.Cnpj == "" ? App.txtCNPJ1.setHidden(true) : App.txtCNPJ1.setValue(retorno.Cnpj);
+        retorno.Nome == null || retorno.Nome == "" ? App.txtRazaoSocial.setHidden(true) : App.txtRazaoSocial.setValue(retorno.Nome);
+        retorno.Fantasia == null || retorno.Fantasia == "" ? App.txtFantasia.setHidden(true) : App.txtFantasia.setValue(retorno.Fantasia);
+        retorno.Logradouro == null || retorno.Logradouro == "" ? App.txtLogradouro.setHidden(true) : App.txtLogradouro.setValue(retorno.Logradouro);
+        retorno.Numero == null || retorno.Numero == "" ? App.txtNumero.setHidden(true) : App.txtNumero.setValue(retorno.Numero);
+        retorno.Municipio == null || retorno.Municipio == "" ? App.txtMunicipio.setHidden(true) : App.txtMunicipio.setValue(retorno.Municipio);
+        retorno.UF == null || retorno.UF == "" ? App.txtUf.setHidden(true) : App.txtUf.setValue(retorno.UF);
+        retorno.Tipo == null || retorno.Tipo == "" ? App.txtTipo.setHidden(true) : App.txtTipo.setValue(retorno.Tipo);
+        retorno.Telefone == null || retorno.Telefone == "" ? App.txtTelefone.setHidden(true) : App.txtTelefone.setValue(retorno.Telefone);
+        retorno.Abertura == null || retorno.Abertura == "" ? App.txtAbertura.setHidden(true) : App.txtEmail.setValue(retorno.Abertura);
+        retorno.Situacao == null || retorno.Situacao == "" ? App.txtSituacao.setHidden(true) : App.txtSituacao.setValue(retorno.Situacao);
+        retorno.Bairro == null || retorno.Bairro == "" ? App.txtBairro.setHidden(true) : App.txtBairro.setValue(retorno.Bairro);
+        retorno.Complemento == null || retorno.Complemento == "" ? App.txtComplemento.setHidden(true) : App.txtComplemento.setValue(retorno.Complemento);
+        retorno.Cep == null || retorno.Cep == "" ? App.txtCep.setHidden(true) : App.txtCep.setValue(retorno.Cep);
+        retorno.Email == null || retorno.Email == "" ? App.txtEmail.setHidden(true) : App.txtEmail.setValue(retorno.Email);
+    }
+    
+</script>
+
+@(
+    X.Panel()
+        .LayoutConfig(new VBoxLayoutConfig() { Align = VBoxAlign.Stretch })
+        .MarginSpec("5 8 5 8")
+        .Border(false)
+        .Items(
+            X.FormPanel()
+                .LayoutConfig(new HBoxLayoutConfig() { Align = HBoxAlign.Stretch })
+                .Items(
+                    X.TextField()
+                        .ID("txtCnpj")
+                        .FieldLabel("CNPJ")
+                        .LabelAlign(LabelAlign.Top)
+                        .Flex(1)
+                        .EmptyText("Digite o CNPJ")
+                        .MaxLength(18)
+                        .MinLength(14)
+                        .MarginSpec("6 9 6 9")
+                        .Plugins(
+                            X.InputMask()
+                                .Mask("99.999.999/9999-99")
+                                .Placeholder(' ')
+                        ),
+                    X.Button()
+                        .Height(30)
+                        .ID("btnConsultar")
+                        .Text("Consultar")
+                        .Icon(Icon.Magnifier)
+                        .Listeners(ls =>
+                        {
+                            ls.Click.Handler = "buscarCnpj()";
+                        })
+                ),
+            X.Panel()
+                .Border(false)
+                .ID("pnlCnpj")
+                .Hidden(true)
+                .MarginSpec("6 9 6 9")
+                .Flex(1)
+                .LayoutConfig(new VBoxLayoutConfig() { Align = VBoxAlign.Stretch })
+                .Items(
+                    X.TextField()
+                        .ID("txtCNPJ1")
+                        .FieldLabel("CNPJ")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtRazaoSocial")
+                        .FieldLabel("Razão Social")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtFantasia")
+                        .FieldLabel("Fantasia")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtTipo")
+                        .FieldLabel("Tipo")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtEmail")
+                        .FieldLabel("E-mail")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtTelefone")
+                        .FieldLabel("Telefone")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtAbertura")
+                        .FieldLabel("Abertura")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtSituacao")
+                        .FieldLabel("Situação")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtLogradouro")
+                        .FieldLabel("Logradouro")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtBairro")
+                        .FieldLabel("Bairro")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtComplemento")
+                        .FieldLabel("Complemento")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtNumero")
+                        .FieldLabel("Número")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtCep")
+                        .FieldLabel("Cep")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtMunicipio")
+                        .FieldLabel("Municipio")
+                        .ReadOnly(true),
+                    X.TextField()
+                        .ID("txtUf")
+                        .FieldLabel("UF")
+                        .ReadOnly(true)
+                )
+
+
+        )
+)

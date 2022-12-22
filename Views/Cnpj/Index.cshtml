@@ -1,0 +1,19 @@
+﻿@(Html.X().ResourceManager().Theme(Theme.Aria))
+
+@{
+    Layout = null;
+    var X = Html.X();
+}
+
+@(
+    X.Viewport()
+        .Layout(LayoutType.Border)
+        .Items(
+            X.Panel()
+                .Region(Region.Center)
+                .LayoutConfig(new VBoxLayoutConfig() { Align = VBoxAlign.Stretch })
+                .ItemsFromPartial("Cnpj/_Index")
+       )
+)
+
+<script type="text/javascript" src="~/Scripts/Geral.js?dc=@this.Request.QueryString["_dc"]"></script>
